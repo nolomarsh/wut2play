@@ -1,14 +1,17 @@
-import './App.css';
-import { Link } from 'react-router-dom';
-
+import "./styles/App.css";
+import { Outlet } from "react-router-dom";
+import Nav from "./components/Nav";
 
 const App = () => {
-    return (
-    <main>
-      <h1>Wut2Play</h1>
-
-    </main>
-  ); 
-}
+  return (
+    <>
+      <Nav />
+      <main>
+        <h1>Wut2Play</h1>
+        <Outlet />
+      </main>
+    </>
+  );
+};
 
 export default App;

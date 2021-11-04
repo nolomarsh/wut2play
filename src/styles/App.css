@@ -1,0 +1,19 @@
+a {
+  margin: 0 1%;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+a.active {
+  color: red;
+}
+
+.invoiceLinks {
+  display: flex;
+  flex-direction: column;
+}
+.invoiceLinks a {
+  margin: 1rem 0;
+}
+
+/*# sourceMappingURL=App.css.map */
