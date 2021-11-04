@@ -1,11 +1,14 @@
 import './App.css';
+import { Link } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Test3</h1>
-    </div>
-  );
+
+const App = () => {
+    return (
+    <main>
+      <h1>Wut2Play</h1>
+
+    </main>
+  ); 
 }
 
 export default App;
