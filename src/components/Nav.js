@@ -4,6 +4,7 @@ const Nav = () => {
   return (
     <nav>
       <Link to='/'>Home</Link>
+      <Link to='/login'>Log In</Link>
       <Link to="/profile">Profile</Link>
       <Link to="/games">My games</Link>
       <Link to="/picker">Pick a Game</Link>

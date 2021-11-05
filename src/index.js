@@ -2,7 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
+import Login from './routes/Login'
 import Profile from './routes/Profile'
+
 import Invoices from './routes/Invoices'
 import Invoice from './routes/Invoice'
 
@@ -11,6 +13,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
+          <Route path='login' element={<Login />}/>
           <Route path='profile' element={<Profile />}/>
           <Route path='invoices' element={<Invoices />}>
             <Route
