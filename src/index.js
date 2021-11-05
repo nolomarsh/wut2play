@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { store } from './store.js'
+
 import App from './App'
 import Login from './routes/Login'
 import Profile from './routes/Profile'
@@ -10,9 +13,10 @@ import Invoice from './routes/Invoice'
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App />}>
+        <Route path='/' element={<App state={store.getState()} dispatch={store.dispatch}/>}>
           <Route path='login' element={<Login />}/>
           <Route path='profile' element={<Profile />}/>
           <Route path='invoices' element={<Invoices />}>
@@ -29,6 +33,7 @@ ReactDOM.render(
         </Route>
       </Routes>
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 )

@@ -1,9 +1,13 @@
-import axios from 'axios'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { attemptLogin2, selectCurrentUser } from '../reducers/currentUserSlice'
 
 const Login = props => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [loginInfo, setLoginInfo] = useState({username: '', password: ''})
-  const [errorMessage, setErrorMessage] = useState('')
+  const currentUser = useSelector(selectCurrentUser)
 
   const handleFormChange = (e) => {
     setLoginInfo({...loginInfo, [e.target.name]: e.target.value})
@@ -11,28 +15,22 @@ const Login = props => {
   
   const attemptLogin = (e) => {
     e.preventDefault()
-    axios
-      .post('https://wut2play-api.herokuapp.com/users/login', loginInfo)
-      .then((response) => {
-        if (response.data.error) {
-          setErrorMessage("Error:", response.data.error)
-        } else {
-          console.log(response.data)
-        }
-      }, (error) => {
-        setErrorMessage('We have no user with that username/password combination!')
-      })
+    dispatch(attemptLogin2(loginInfo, navigate))
+
+    // navigate('/profile')
   }
 
   return (
     <div className='login'>
-      <form className='loginForm' onSubmit={attemptLogin}>
+      <form 
+        className='loginForm' 
+        onSubmit={attemptLogin}>
         <label htmlFor='username'>Username: </label>
         <input type='text' name='username' onChange={handleFormChange} required/>
         <label htmlFor='password'>Password: </label>
         <input type='password' name='password' onChange={handleFormChange} required/>
         <input type='submit' value='Log In'/>
-        {errorMessage && <p className='errorMessage'>{errorMessage}</p>}
+        {currentUser.error && <p className='errorMessage'>{currentUser.error}</p>}
       </form> 
     </div>
   )
