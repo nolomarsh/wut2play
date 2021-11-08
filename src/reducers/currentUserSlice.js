@@ -63,6 +63,7 @@ export const unsetCurrentUser = () => {
   }
 }
 
+//A thunk for logging out, also removes currentUser from local storage
 export const logoutThunk = () => {
   return (dispatch) => {
     localStorage.removeItem('currentUser')

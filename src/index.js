@@ -9,6 +9,7 @@ import Login from './routes/Login'
 import Profile from './routes/Profile'
 import NewGame from './routes/NewGame'
 import GameLookup from './routes/GameLookup'
+import GameDetails from './routes/GameDetails.js'
 
 import Invoices from './routes/Invoices'
 import Invoice from './routes/Invoice'
@@ -28,7 +29,9 @@ ReactDOM.render(
             }
           >
             <Route path='login' element={<Login />}/>
-            <Route path='gameLookup' element={<GameLookup />}/>
+            <Route path='gameLookup' element={<GameLookup />}>
+              <Route path='gameDetails' element={<GameDetails/>}/>
+            </Route>
             <Route path='profile' element={<Profile />}>
               <Route path='newGame' element={<NewGame />}></Route>
             </Route>

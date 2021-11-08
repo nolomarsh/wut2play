@@ -1,12 +1,17 @@
 import axios from 'axios'
 import { useState } from 'react'
-import GameDetails from '../components/GameDetails'
+import { useDispatch, useSelector } from 'react-redux'
+import { setGameFromRaw } from '../reducers/currentGameSlice'
+import { selectCurrentUser } from '../reducers/currentUserSlice'
+import { useNavigate, Outlet } from 'react-router'
+import { GameDetails } from './GameDetails'
 
 const GameLookup = props => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const currentUser = useSelector(selectCurrentUser)
   const [foundGames, setFoundGames] = useState([])
-  const [currentGame, setCurrentGame] = useState({})
   const [searchInfo, setSearchInfo] = useState({limit: 25, fuzzy_match: true})
-  const [showForm, setShowForm] = useState(true)
 
   const handleSearchSubmit = (e) => {
     e.preventDefault()
@@ -26,33 +31,38 @@ const GameLookup = props => {
   const formChangeHandler = e => {
     setSearchInfo({...searchInfo, [e.target.name]: e.target.value})
   }
+
+  const handleGameSelect = game => {
+    dispatch(setGameFromRaw(game, currentUser))
+    navigate('gameDetails')
+  }
   
   return (
     <section className='GameLookup'>
-      {showForm && 
-        <form onSubmit={handleSearchSubmit}>
-          <fieldset>
-            <legend><h1>Search Games</h1></legend>
-            <label htmlFor='name'>Name: </label>
-            <input type='text' name='name' onChange={formChangeHandler}/>
-          </fieldset>
-          <input type='submit'/>
-        </form>
-      }
-      <div className='lookupDisplay'>
-        <ul className='lookupResults'>
+  
+      <form onSubmit={handleSearchSubmit}>
+        <fieldset>
+          <legend><h1>Search Games</h1></legend>
+          <label htmlFor='name'>Name: </label>
+          <input type='text' name='name' onChange={formChangeHandler}/>
+        </fieldset>
+        <input type='submit'/>
+      </form>
+      
+      <div className='innerNavDisplay'>
+        <ul className='innerNav'>
           {foundGames && 
             foundGames.map((game) => {
               return (
-                <li key='game.name'>{game.name}</li>
+                <li key='game.name' onClick={() => handleGameSelect(game)}>{game.name}</li>
               )
             })
           }
         </ul>
-      
-      {currentGame && 
-        <GameDetails game={currentGame}/>
-      }
+        <div className='innerDisplay'>
+          <Outlet/>
+        </div>
+        
       </div>
     </section>
   )

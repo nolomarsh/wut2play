@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { selectCurrentUser } from "../reducers/currentUserSlice"
+import { selectCurrentGame } from "../reducers/currentGameSlice"
 
 const initialGame = {
   name: '',
@@ -14,6 +15,7 @@ const initialGame = {
 
 const NewGame = (props) => {
   const currentUser = useSelector(selectCurrentUser)
+  const currentGame = useSelector(selectCurrentGame)
 
   const [gameEntry, setGameEntry] = useState({...initialGame, userid:currentUser.id})
 
@@ -25,6 +27,12 @@ const NewGame = (props) => {
     e.preventDefault()
     console.log(gameEntry)
   }
+
+  useEffect(() => {
+    if (currentGame.name) {
+      setGameEntry({...currentGame})
+    }
+  },[])
   
   return (
     <section className='NewGame'>

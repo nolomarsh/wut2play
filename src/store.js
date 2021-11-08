@@ -2,9 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
 import { currentUserReducer } from './reducers/currentUserSlice'
+import { currentGameReducer } from './reducers/currentGameSlice'
 
 const rootReducer = combineReducers({
-  currentUser: currentUserReducer
+  currentUser: currentUserReducer,
+  currentGame: currentGameReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
