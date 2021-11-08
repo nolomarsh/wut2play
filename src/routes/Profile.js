@@ -23,7 +23,9 @@ const Profile = () => {
             to={'newGame'}
           >Add a Game</NavLink>
         </div>
-        <Outlet/>
+        <div className='profileOutlet'>
+          <Outlet/>
+        </div>
       </div>
       <button onClick={handleLogout}>Log Out</button>
     </section>

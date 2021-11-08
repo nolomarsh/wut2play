@@ -28,25 +28,26 @@ const NewGame = (props) => {
         <fieldset>
           <legend><h1>Add a Game</h1></legend>
           <label htmlFor='name'>Name: </label>
-          <input type='text' id='name' name='name' onChange={handleFormChange}/>
+          <input type='text' id='name' name='name' onChange={handleFormChange} required/>
+          <label htmlFor='imageurl'>Image Url:</label>
+          <input type='text' id='imageurl' name='imageurl' onChange={handleFormChange}/>
           <fieldset>
             <legend>Number of Players</legend>
             <label htmlFor='minplayers'>Minimum:</label>
-            <input type='number' id='minplayers' name='minplayers' onChange={handleFormChange}/>
+            <input type='number' id='minplayers' name='minplayers' onChange={handleFormChange} required/>
             <label htmlFor='maxplayers'>Maximum:</label>
-            <input type='number' id='maxplayers' name='maxplayers' onChange={handleFormChange}/>
+            <input type='number' id='maxplayers' name='maxplayers' onChange={handleFormChange} required/>
           </fieldset>
           <fieldset>
             <legend>Playtime (in minutes)</legend>
             <label htmlFor='mintime'>Minimum:</label>
-            <input type='number' id='mintime' name='mintime' onChange={handleFormChange}/>
+            <input type='number' id='mintime' name='mintime' onChange={handleFormChange} required/>
             <label htmlFor='maxtime'>Maximum:</label>
-            <input type='number' id='maxtime' name='maxtime' onChange={handleFormChange}/>
+            <input type='number' id='maxtime' name='maxtime' onChange={handleFormChange} required/>
           </fieldset>
           <label htmlFor='notes'>Notes:</label>
           <textarea id='notes' name='notes' onChange={handleFormChange}></textarea>
         </fieldset>
-        
         <input type='submit' value='Add Game'/>
       </form>
     </section>
