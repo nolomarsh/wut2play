@@ -19,7 +19,7 @@ const Login = props => {
   }
 
   return (
-    <div className='login'>
+    <section className='Login'>
       <form 
         className='loginForm' 
         onSubmit={attemptLogin}>
@@ -30,7 +30,7 @@ const Login = props => {
         <input type='submit' value='Log In'/>
         {currentUser.error && <p className='errorMessage'>{currentUser.error}</p>}
       </form> 
-    </div>
+    </section>
   )
 }
 

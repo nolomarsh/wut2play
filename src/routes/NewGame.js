@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useSelector } from "react-redux"
+import { selectCurrentUser } from "../reducers/currentUserSlice"
 
 const initialGame = {
   name: '',
@@ -11,7 +13,9 @@ const initialGame = {
 }
 
 const NewGame = (props) => {
-  const [gameEntry, setGameEntry] = useState(initialGame)
+  const currentUser = useSelector(selectCurrentUser)
+
+  const [gameEntry, setGameEntry] = useState({...initialGame, userid:currentUser.id})
 
   const handleFormChange = e => {
     setGameEntry({...gameEntry, [e.target.name]: e.target.value})

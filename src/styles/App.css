@@ -39,6 +39,13 @@ a.active {
   width: 80%;
 }
 
+.GameLookup ul {
+  padding: 0;
+}
+.GameLookup li {
+  list-style-type: none;
+}
+
 .NewGame form {
   display: flex;
   flex-direction: column;

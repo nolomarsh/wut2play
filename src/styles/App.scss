@@ -44,6 +44,15 @@ a {
   }
 }
 
+.GameLookup {
+  ul {
+    padding: 0;
+  }
+  li {
+    list-style-type: none;
+  }
+}
+
 .NewGame {
   form {
     display: flex;

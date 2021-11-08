@@ -24,8 +24,9 @@ const Nav = () => {
         </>
         : <Link className="navBtn" to='/login'>Log In</Link>
       }
+      <Link className='navBtn' to='/gameLookup'>Look Up Game</Link>
       <Link className='navBtn' to="/picker">Pick a Game</Link>
-      
+
       <Link className='navBtn' to='/invoices'>Invoices</Link>
     </nav>
   )
