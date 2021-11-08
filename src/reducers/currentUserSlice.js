@@ -35,7 +35,9 @@ export const setCurrentUserError = errorMessage => {
   }
 }
 
-export const attemptLogin2 = (loginInfo, navigate) => {
+//A thunk for attempting to login which sends the appropriate action based on result
+//Must pass in navigate so that it can conditionally change the url
+export const attemptLoginThunk = (loginInfo, navigate) => {
   return (dispatch) => {
     axios
       .post('https://wut2play-api.herokuapp.com/users/login', loginInfo)
@@ -46,6 +48,7 @@ export const attemptLogin2 = (loginInfo, navigate) => {
         if(response.data.username) {
           dispatch(setCurrentUser(response.data))
           navigate('/profile')
+          localStorage.setItem('currentUser', JSON.stringify(response.data))
         }
       })
       .catch((error) => {
@@ -57,6 +60,13 @@ export const attemptLogin2 = (loginInfo, navigate) => {
 export const unsetCurrentUser = () => {
   return {
     type: 'currentUser/unset'
+  }
+}
+
+export const logoutThunk = () => {
+  return (dispatch) => {
+    localStorage.removeItem('currentUser')
+    dispatch(unsetCurrentUser()) 
   }
 }
 

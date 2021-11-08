@@ -7,7 +7,6 @@ const App = () => {
     <>
       <Nav />
       <main>
-        <h1>Wut2Play</h1>
         <Outlet />
       </main>
     </>

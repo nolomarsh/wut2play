@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { attemptLogin2, selectCurrentUser } from '../reducers/currentUserSlice'
+import { attemptLoginThunk, selectCurrentUser } from '../reducers/currentUserSlice'
 
 const Login = props => {
   const dispatch = useDispatch()
@@ -15,9 +15,7 @@ const Login = props => {
   
   const attemptLogin = (e) => {
     e.preventDefault()
-    dispatch(attemptLogin2(loginInfo, navigate))
-
-    // navigate('/profile')
+    dispatch(attemptLoginThunk(loginInfo, navigate))
   }
 
   return (

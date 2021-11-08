@@ -1,20 +1,32 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectCurrentUser } from '../reducers/currentUserSlice'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectCurrentUser, logoutThunk, setCurrentUser } from '../reducers/currentUserSlice'
 
 const Nav = () => {
+  const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
 
+  useEffect(() => {
+    if (localStorage.getItem('currentUser')) {
+      dispatch(setCurrentUser(JSON.parse(localStorage.getItem('currentUser'))))
+    }
+  },[])
+
   return (
-    <nav>
-      <Link to='/'>Home</Link>
+    <nav className='navHeader'>
+      <Link className='navBtn logo' to='/'>Wut2Play</Link>
       {currentUser.username
-        ? <Link to="/profile">Profile</Link>
-        : <Link to='/login'>Log In</Link>
+        ? 
+        <>
+          <Link className='navBtn' to='/profile'>Profile</Link>
+          <button className='navBtn' onClick={() => dispatch(logoutThunk())}>Log Out</button>
+        </>
+        : <Link className="navBtn" to='/login'>Log In</Link>
       }
-      <Link to="/games">My games</Link>
-      <Link to="/picker">Pick a Game</Link>
-      <Link to='/invoices'>Invoices</Link>
+      <Link className='navBtn' to='/games'>My games</Link>
+      <Link className='navBtn' to="/picker">Pick a Game</Link>
+      <Link className='navBtn' to='/invoices'>Invoices</Link>
     </nav>
   )
 }
