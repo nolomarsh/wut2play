@@ -22,6 +22,10 @@ const Profile = () => {
             className={({ isActive }) => isActive ? 'profileLink active' : 'profileLink'}
             to={'newGame'}
           >Add a Game</NavLink>
+          <NavLink
+            className={({ isActive }) => isActive ? 'profileLink active' : 'profileLink'}
+            to={'myGames'}
+          >My Games</NavLink>
         </div>
         <div className='profileOutlet'>
           <Outlet/>

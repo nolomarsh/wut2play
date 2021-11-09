@@ -62,6 +62,9 @@ a.active {
   width: 100%;
   max-width: 500px;
 }
+.NewGame form img {
+  max-width: 150px;
+}
 .NewGame form input[type=text] {
   width: 100%;
   padding: 0.5rem;
@@ -71,7 +74,7 @@ a.active {
   margin: 1rem 0;
   padding: 0.5rem;
 }
-.NewGame form > fieldset > fieldset input {
+.NewGame form > fieldset > fieldset > input:not([type=text]) {
   width: 3.5rem;
   padding: 0.25rem;
   margin: 0 1rem 0 0.5rem;

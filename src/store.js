@@ -3,10 +3,12 @@ import thunk from 'redux-thunk'
 
 import { currentUserReducer } from './reducers/currentUserSlice'
 import { currentGameReducer } from './reducers/currentGameSlice'
+import { myGamesReducer } from './reducers/myGamesSlice'
 
 const rootReducer = combineReducers({
   currentUser: currentUserReducer,
-  currentGame: currentGameReducer
+  currentGame: currentGameReducer,
+  myGames: myGamesReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))

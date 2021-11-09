@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setGameFromRaw } from '../reducers/currentGameSlice'
 import { selectCurrentUser } from '../reducers/currentUserSlice'
 import { useNavigate, Outlet } from 'react-router'
-import { GameDetails } from './GameDetails'
 
 const GameLookup = props => {
   const navigate = useNavigate()
